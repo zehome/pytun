@@ -109,7 +109,7 @@ class Tunnel(object):
             logger.info("Tunnel '%s' closed." % (self.name or "", ))
 
     def send(self, buf):
-        os.write(self.fd, buf)
+        return os.write(self.fd, buf)
 
     def recv(self, size=1500):
         return os.read(self.fd, size)
