@@ -99,7 +99,7 @@ class Tunnel(object):
                 raise self.PermissionDenied()
 
             raise
-        self.name = str(ret[:16].strip(b"\x00"))
+        self.name = ret[:16].strip(b"\x00").decode()
         logger.info("Tunnel '%s' opened." % (self.name, ))
 
     def close(self):
