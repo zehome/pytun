@@ -55,14 +55,9 @@ class Tunnel(object):
             The argument 'pattern set the string format used to
             generate the name of the future tunnel. By default, for
             Linux, it is "tun%d" or "tap%d" depending on the mode.
-
-            If the argument 'auto_open' is true, this constructor
-            will automatically create the tunnel.
-
         """
         mode = mode if mode is not None else "tun"
         pattern = pattern if pattern is not None else ""
-        auto_open = auto_open if auto_open is not None else True
         super(Tunnel, self).__init__()
         self.pattern = pattern
         self.mode = mode
