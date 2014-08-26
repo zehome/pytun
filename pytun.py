@@ -110,7 +110,7 @@ class Tunnel(object):
         
         logger.debug("Opening %s tunnel '%s'..." % (self.mode_name.upper(), self.pattern, ))
         try:
-            ret = fcntl.ioctl(self.fd, self.TUNSETIFF, struct.pack("16sH", self.pattern, self.mode))
+            ret = fcntl.ioctl(self.fd, self.TUNSETIFF, struct.pack("16sH", self.pattern.encode(), self.mode))
 
         except IOError as e:
             if e.errno == 1:
@@ -119,7 +119,7 @@ class Tunnel(object):
 
             raise
 
-        self.name = ret[:16].strip("\x00")
+        self.name = str(ret[:16].strip(b"\x00"))
 
         logger.info("Tunnel '%s' opened." % (self.name, ))
 
